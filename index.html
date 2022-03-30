@@ -173,17 +173,17 @@
         </div>
 
         <div class="row justify-content-center">
-            <form action="" class="col-md-7">
+            <form id="submit-form"class="col-md-7">
                 <div class="inputBox">
-                    <input type="text" placeholder="Full Name">
+                    <input type="text" name="fullname" placeholder="Full Name" required>
                 </div>
 
                 <div class="inputBox">
-                    <input type="email" placeholder="email">
+                    <input type="email" name="email" placeholder="email" required>
                 </div>
 
                 <div class="inputBox">
-                   <textarea name="" id="" placeholder="Message" cols="30" rows="10"></textarea>
+                   <textarea name="message" id="" placeholder="Message" required cols="30" rows="10"></textarea>
                 </div>
 
                 <input type="submit">
@@ -256,7 +256,27 @@
             });
 
         });
+
+        $("#submit-form").submit((e)=>{
+        e.preventDefault()
+        $.ajax({
+            url:"https://script.google.com/macros/s/AKfycbx8yOKclpqhaTFJJvtf8A4FK4feKOcGOVMAo637uC9sZdRqYqT3wRD12yWXuBE7oIKxZQ/exec",
+            data:$("#submit-form").serialize(),
+            method:"post",
+            success:function (response){
+                alert("Form submitted successfully")
+                window.location.reload()
+                //window.location.href="https://google.com"
+            },
+            error:function (err){
+                alert("Something Error")
+    
+            }
+        })
+    })
     </script>
+    
+  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
